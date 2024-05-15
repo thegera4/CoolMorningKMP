@@ -57,8 +57,8 @@ class BottomBarScreen : Screen {
                             },
                             onClick = { tabNavigator.current = HomeTab },
                             modifier = Modifier.background(Color.White),
-                            unselectedContentColor = Color.Black,
-                            selectedContentColor = Color.Blue
+                            unselectedContentColor = Color(0xFF8D6236),
+                            selectedContentColor = Color(0xFF04A595)
                         )
                         BottomNavigationItem(
                             selected = tabNavigator.current.key == CatalogsTab.key,
@@ -78,8 +78,8 @@ class BottomBarScreen : Screen {
                             },
                             onClick = { tabNavigator.current = CatalogsTab },
                             modifier = Modifier.background(Color.White),
-                            unselectedContentColor = Color.Black,
-                            selectedContentColor = Color.Blue
+                            unselectedContentColor = Color(0xFF8D6236),
+                            selectedContentColor = Color(0xFF04A595)
                         )
                         BottomNavigationItem(
                             selected = tabNavigator.current.key == ContactTab.key,
@@ -99,8 +99,8 @@ class BottomBarScreen : Screen {
                             },
                             onClick = { tabNavigator.current = ContactTab },
                             modifier = Modifier.background(Color.White),
-                            unselectedContentColor = Color.Black,
-                            selectedContentColor = Color.Blue
+                            unselectedContentColor = Color(0xFF8D6236),
+                            selectedContentColor = Color(0xFF04A595)
                         )
 
                     }
