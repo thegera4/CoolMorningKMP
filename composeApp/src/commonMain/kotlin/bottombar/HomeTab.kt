@@ -1,17 +1,11 @@
 package bottombar
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.windowInsetsTopHeight
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -64,13 +58,14 @@ object HomeTab : Tab {
                     Image(
                         painter = painterResource(Res.drawable.home_screen_img),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxSize().fillMaxHeight(),
+                        modifier = Modifier.fillMaxSize(),
+                        alignment = Alignment.TopCenter
                     )
                     Text(
                         text = "EL DETALLE PERFECTO PARA CADA OCASIÓN!",
-                        fontSize = 14.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
+                        fontFamily = FontFamily.Cursive,
                         color = Color.Black,
                         modifier = Modifier.align(Alignment.BottomCenter)
                     )
