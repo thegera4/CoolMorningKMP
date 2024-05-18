@@ -62,12 +62,13 @@ object HomeTab : Tab {
                         alignment = Alignment.TopCenter
                     )
                     Text(
-                        text = "EL DETALLE PERFECTO PARA CADA OCASIÓN!",
-                        fontSize = 16.sp,
+                        text = "El detalle perfecto para cada ocasión!",
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.Cursive,
+                        fontFamily = FontFamily.SansSerif,
                         color = Color.Black,
-                        modifier = Modifier.align(Alignment.BottomCenter)
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
                 }
 
