@@ -1,4 +1,4 @@
-package bottombar
+package bottombar.catalogs_composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
