@@ -1,12 +1,15 @@
 package bottombar.catalogs_composable
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -17,7 +20,8 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource, avatarPosition: AvatarPosition) {
+fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource,
+                   avatarPosition: AvatarPosition, catalog: Catalogs) {
 
     Row (modifier = Modifier.fillMaxHeight())  {
         if(avatarPosition == AvatarPosition.LEFT) {
@@ -26,13 +30,14 @@ fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource, 
         Image(
             painter = painterResource(clickableImg),
             contentDescription = null,
-            modifier = Modifier/*.fillMaxWidth()*/.width(280.dp).height(140.dp)
-            /*.clickable( // TODO: When clicked, it will open a pdf viewer with the catalog (pdf file)
-            indication = null, // Remove ripple effect
+            modifier = Modifier.width(280.dp).height(140.dp)
+            .clickable(
+            indication = null,
             interactionSource = remember { MutableInteractionSource() }
         ){
-            println("Desayunos y globos")
-        },*/,
+            println(catalog)
+            // TODO: When clicked, it will open a pdf viewer with the catalog (pdf file)
+        },
             alignment = Alignment.Center,
         )
         Spacer(modifier = Modifier.width(4.dp))
@@ -44,4 +49,8 @@ fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource, 
 
 enum class AvatarPosition {
     LEFT, RIGHT
+}
+
+enum class Catalogs {
+    DESAYUNOS_Y_GLOBOS, CENA_EN_COLUMPIOS, LUCES_Y_DECORACION, EVENTOS_ESPECIALES
 }

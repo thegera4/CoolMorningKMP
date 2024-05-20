@@ -18,14 +18,21 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import bottombar.catalogs_composable.AvatarPosition
+import bottombar.catalogs_composable.Catalogs
 import bottombar.catalogs_composable.ChatWithAvatar
 import bottombar.catalogs_composable.Topbar_Catalogs
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import coolmorning.composeapp.generated.resources.Res
-import coolmorning.composeapp.generated.resources.box_y_globos
 import coolmorning.composeapp.generated.resources.desayunos_y_globos
+import coolmorning.composeapp.generated.resources.cena_en_columpios
+import coolmorning.composeapp.generated.resources.luces_y_decoracion
+import coolmorning.composeapp.generated.resources.eventos_especiales
 import coolmorning.composeapp.generated.resources.logo1
+import coolmorning.composeapp.generated.resources.box_y_globos
+import coolmorning.composeapp.generated.resources.columpios
+import coolmorning.composeapp.generated.resources.luces
+import coolmorning.composeapp.generated.resources.especiales
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -47,9 +54,7 @@ object CatalogsTab  : Tab {
     @OptIn(ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
-        Column(
-            modifier = Modifier.fillMaxSize().fillMaxHeight(),
-        ) {
+        Column(modifier = Modifier.fillMaxSize().fillMaxHeight()) {
             Box(
                 modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
                 contentAlignment = Alignment.TopCenter,
@@ -64,44 +69,45 @@ object CatalogsTab  : Tab {
                 )
                 // Topbar Composable: Small logo and text above the catalogs
                 Topbar_Catalogs()
-                // Scrollable Column container for the chats with avatars (catalogs)
+                // Scrollable Column container for the catalog options
                 LazyColumn (
                     verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.padding(top = 100.dp)
+                    modifier = Modifier.padding(top = 108.dp)
                 ){
                     item{
-                        // Desayunos y globos
                         ChatWithAvatar(
                             clickableImg = Res.drawable.desayunos_y_globos,
                             avatarImg = Res.drawable.box_y_globos,
-                            avatarPosition = AvatarPosition.RIGHT
+                            avatarPosition = AvatarPosition.RIGHT,
+                            catalog = Catalogs.DESAYUNOS_Y_GLOBOS
                         )
                     }
                     item{
-                        // Cena en columpios
                         ChatWithAvatar(
-                            clickableImg = Res.drawable.desayunos_y_globos,
-                            avatarImg = Res.drawable.box_y_globos,
-                            avatarPosition = AvatarPosition.LEFT
+                            clickableImg = Res.drawable.cena_en_columpios,
+                            avatarImg = Res.drawable.columpios,
+                            avatarPosition = AvatarPosition.LEFT,
+                            catalog = Catalogs.CENA_EN_COLUMPIOS
                         )
                     }
-                    /*item {
-                        // Luces y decoracion
+                    item {
                         ChatWithAvatar(
-                            text = "Luces y decoración",
+                            clickableImg = Res.drawable.luces_y_decoracion,
+                            avatarImg = Res.drawable.luces,
+                            avatarPosition = AvatarPosition.RIGHT,
+                            catalog = Catalogs.LUCES_Y_DECORACION
                         )
                     }
                     item{
-                        // Eventos especiales
                         ChatWithAvatar(
-                            text = "Eventos especiales",
+                            clickableImg = Res.drawable.eventos_especiales,
+                            avatarImg = Res.drawable.especiales,
+                            avatarPosition = AvatarPosition.LEFT,
+                            catalog = Catalogs.EVENTOS_ESPECIALES
                         )
-                    }*/
-
+                    }
                 }
-
             }
-
         }
     }
 }

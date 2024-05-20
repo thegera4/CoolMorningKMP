@@ -3,8 +3,10 @@ package bottombar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -15,21 +17,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalViewConfiguration
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import coolmorning.composeapp.generated.resources.GOTHICB
 import coolmorning.composeapp.generated.resources.Res
 import coolmorning.composeapp.generated.resources.home_screen_img
 import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 
-//TODO: disable status bar so that the image goes to the top of the screen
 
 object HomeTab : Tab {
-
     override val options: TabOptions
 
         @Composable
@@ -48,28 +53,35 @@ object HomeTab : Tab {
     @Composable
     override fun Content() {
 
-        Column(
-            modifier = Modifier.fillMaxSize().fillMaxHeight()
-        ) {
-                Box(
+        val screenDensity = LocalDensity.current.density
+
+        Column(modifier = Modifier.fillMaxSize().fillMaxHeight()) {
+                Box (
                     modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
-                    contentAlignment = Alignment.Center,
-                ) {
+                    contentAlignment = Alignment.BottomCenter,
+                ){
+                    val fontSize = when {
+                        screenDensity < 1.5f -> 18.sp
+                        screenDensity < 2f -> 20.sp
+                        else -> 20.sp
+                    }
+
                     Image(
                         painter = painterResource(Res.drawable.home_screen_img),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().aspectRatio(0.49f), //0.55
                         alignment = Alignment.TopCenter
                     )
                     Text(
                         text = "El detalle perfecto para cada ocasión!",
-                        fontSize = 18.sp,
+                        fontSize = fontSize,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily.SansSerif,
-                        color = Color.Black,
-                        modifier = Modifier.align(Alignment.BottomCenter),
+                        fontFamily = FontFamily(Font(Res.font.GOTHICB)),
+                        color = Color(0xFF8D6236),
+                        modifier = Modifier.fillMaxWidth(),
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     )
+
                 }
 
         }
