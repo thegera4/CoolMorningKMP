@@ -3,7 +3,6 @@ package bottombar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,15 +10,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalViewConfiguration
-import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -32,6 +31,7 @@ import coolmorning.composeapp.generated.resources.home_screen_img
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 
 
 object HomeTab : Tab {
@@ -49,28 +49,30 @@ object HomeTab : Tab {
             }
         }
 
-    @OptIn(ExperimentalResourceApi::class)
+    @OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3WindowSizeClassApi::class)
     @Composable
     override fun Content() {
 
-        val screenDensity = LocalDensity.current.density
+        val windowSizeClass = calculateWindowSizeClass()
 
-        Column(modifier = Modifier.fillMaxSize().fillMaxHeight()) {
+        // Example of how to change the font size based on the screen width
+        val fontSize = when (windowSizeClass.widthSizeClass) {
+            WindowWidthSizeClass.Compact -> 16.sp
+            WindowWidthSizeClass.Medium -> 24.sp
+            else -> 30.sp
+        }
+
+        Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
                 Box (
                     modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
                     contentAlignment = Alignment.BottomCenter,
                 ){
-                    val fontSize = when {
-                        screenDensity < 1.5f -> 18.sp
-                        screenDensity < 2f -> 20.sp
-                        else -> 20.sp
-                    }
-
                     Image(
                         painter = painterResource(Res.drawable.home_screen_img),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxSize().aspectRatio(0.49f), //0.55
-                        alignment = Alignment.TopCenter
+                        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                        alignment = Alignment.TopCenter,
+                        contentScale = ContentScale.Crop
                     )
                     Text(
                         text = "El detalle perfecto para cada ocasión!",
@@ -83,7 +85,6 @@ object HomeTab : Tab {
                     )
 
                 }
-
         }
     }
 }

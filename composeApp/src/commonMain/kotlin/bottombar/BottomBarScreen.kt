@@ -1,9 +1,6 @@
 package bottombar
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -39,76 +36,48 @@ class BottomBarScreen : Screen {
                         val tabNavigator = LocalTabNavigator.current
                         BottomNavigationItem(
                             selected = tabNavigator.current.key == HomeTab.key,
-                            label = {
-                                    AnimatedVisibility(
-                                        visible = tabNavigator.current.key == HomeTab.key,
-                                        enter = slideInVertically(initialOffsetY = { 100 }),
-                                        exit = slideOutVertically(targetOffsetY = { 100 })
-                                    ) {
-                                        Text(HomeTab.options.title)
-                                    }
-                            },
-                            icon = {
-                                Icon(
-                                    painter = HomeTab.options.icon!!,
-                                    contentDescription = null,
-                                )
-                            },
+                            label = { Text(HomeTab.options.title) },
+                            icon = { Icon(
+                                        painter = HomeTab.options.icon!!,
+                                        contentDescription = null,
+                                    )},
                             onClick = { tabNavigator.current = HomeTab },
                             modifier = Modifier.background(Color.White),
                             unselectedContentColor = Color(0xFF8D6236),
-                            selectedContentColor = Color(0xFF04A595)
+                            selectedContentColor = Color(0xFF04A595),
+                            alwaysShowLabel = false
                         )
                         BottomNavigationItem(
                             selected = tabNavigator.current.key == CatalogsTab.key,
-                            label = {
-                                AnimatedVisibility(
-                                    visible = tabNavigator.current.key == CatalogsTab.key,
-                                    enter = slideInVertically(initialOffsetY = { 100 }),
-                                    exit = slideOutVertically(targetOffsetY = { 100 })
-                                ) {
-                                    Text(CatalogsTab.options.title)
-                                }},
-                            icon = {
-                                Icon(
-                                    painter = CatalogsTab.options.icon!!,
-                                    contentDescription = null
-                                )
-                            },
+                            label = { Text(CatalogsTab.options.title) },
+                            icon = { Icon(
+                                        painter = CatalogsTab.options.icon!!,
+                                        contentDescription = null
+                                    )},
                             onClick = { tabNavigator.current = CatalogsTab },
                             modifier = Modifier.background(Color.White),
                             unselectedContentColor = Color(0xFF8D6236),
-                            selectedContentColor = Color(0xFF04A595)
+                            selectedContentColor = Color(0xFF04A595),
+                            alwaysShowLabel = false
                         )
                         BottomNavigationItem(
                             selected = tabNavigator.current.key == ContactTab.key,
-                            label = {
-                                AnimatedVisibility(
-                                    visible = tabNavigator.current.key == ContactTab.key,
-                                    enter = slideInVertically(initialOffsetY = { 100 }),
-                                    exit = slideOutVertically(targetOffsetY = { 100 })
-                                ) {
-                                    Text(ContactTab.options.title)
-                                } },
-                            icon = {
-                                Icon(
-                                    painter = ContactTab.options.icon!!,
-                                    contentDescription = null
-                                )
-                            },
+                            label = { Text(ContactTab.options.title) },
+                            icon = { Icon(
+                                        painter = ContactTab.options.icon!!,
+                                        contentDescription = null
+                                    )},
                             onClick = { tabNavigator.current = ContactTab },
                             modifier = Modifier.background(Color.White),
                             unselectedContentColor = Color(0xFF8D6236),
-                            selectedContentColor = Color(0xFF04A595)
+                            selectedContentColor = Color(0xFF04A595),
+                            alwaysShowLabel = false
                         )
-
                     }
                 },
                 content = {
                     val tabNavigator = LocalTabNavigator.current
-                    Crossfade(targetState = tabNavigator.current){ tab ->
-                        tab.Content()
-                    }
+                    Crossfade(targetState = tabNavigator.current){ tab -> tab.Content() }
                 }
             )
         }

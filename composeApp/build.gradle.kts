@@ -44,6 +44,7 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.tabNavigator)
+            implementation(libs.window.size)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
