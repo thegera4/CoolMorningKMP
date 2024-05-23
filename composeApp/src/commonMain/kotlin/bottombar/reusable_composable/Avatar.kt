@@ -1,4 +1,4 @@
-package bottombar.catalogs_composable
+package bottombar.reusable_composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

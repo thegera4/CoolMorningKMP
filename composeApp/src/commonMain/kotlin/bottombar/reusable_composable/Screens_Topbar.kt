@@ -1,8 +1,9 @@
-package bottombar.catalogs_composable
+package bottombar.reusable_composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -13,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coolmorning.composeapp.generated.resources.GOTHICB
 import coolmorning.composeapp.generated.resources.Res
 import coolmorning.composeapp.generated.resources.logo2
@@ -24,9 +25,11 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun Topbar_Catalogs() {
+fun Screens_Topbar(text: String, fontSize: TextUnit) {
     Column(
-        modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars).padding(top = 16.dp),
+        modifier = Modifier.fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.statusBars)
+            .padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
@@ -35,8 +38,8 @@ fun Topbar_Catalogs() {
             alignment = Alignment.TopCenter,
         )
         Text(
-            text = "Revisa nuestros catálogos y escoge tu experiencia!",
-            fontSize = 14.sp,
+            text = text,
+            fontSize = fontSize,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily(Font(Res.font.GOTHICB)),
             color = Color(0xFF8D6236),
@@ -44,5 +47,4 @@ fun Topbar_Catalogs() {
             modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
         )
     }
-
 }

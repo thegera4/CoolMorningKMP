@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -17,10 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import bottombar.catalogs_composable.AvatarPosition
-import bottombar.catalogs_composable.Catalogs
-import bottombar.catalogs_composable.ChatWithAvatar
-import bottombar.catalogs_composable.Topbar_Catalogs
+import androidx.compose.ui.unit.sp
+import bottombar.reusable_composable.AvatarPosition
+import bottombar.reusable_composable.Catalogs
+import bottombar.reusable_composable.ChatWithAvatar
+import bottombar.reusable_composable.Screens_Topbar
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import coolmorning.composeapp.generated.resources.Res
@@ -51,9 +56,28 @@ object CatalogsTab  : Tab {
             }
         }
 
-    @OptIn(ExperimentalResourceApi::class)
+    @OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3WindowSizeClassApi::class)
     @Composable
     override fun Content() {
+
+        val windowSizeClass = calculateWindowSizeClass()
+
+        val imgWidth = when (windowSizeClass.widthSizeClass) {
+            WindowWidthSizeClass.Compact -> 280.dp
+            else -> 450.dp
+        }
+
+        val imgHeight = when (windowSizeClass.heightSizeClass) {
+            WindowHeightSizeClass.Compact -> 140.dp
+            WindowHeightSizeClass.Medium -> 140.dp
+            else -> 210.dp
+        }
+
+        val fontSize = when (windowSizeClass.widthSizeClass) {
+            WindowWidthSizeClass.Compact -> 15.sp
+            else -> 20.sp
+        }
+
         Column(modifier = Modifier.fillMaxSize().fillMaxHeight()) {
             Box(
                 modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
@@ -68,18 +92,22 @@ object CatalogsTab  : Tab {
                     alpha = 0.2f
                 )
                 Column {
-                    // Topbar Composable: Small logo and text above the catalogs
-                    Topbar_Catalogs()
-                    // Scrollable Column container for the catalog options
+                    Screens_Topbar(
+                        text = "Revisa nuestros catálogos y escoge tu experiencia!",
+                        fontSize = fontSize
+                    )
                     LazyColumn (
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.fillMaxHeight().fillMaxSize(),
+                        verticalArrangement = Arrangement.SpaceAround,
                     ){
                         item{
                             ChatWithAvatar(
                                 clickableImg = Res.drawable.desayunos_y_globos,
                                 avatarImg = Res.drawable.box_y_globos,
                                 avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS
+                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
                             )
                         }
                         item{
@@ -87,15 +115,19 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.cena_en_columpios,
                                 avatarImg = Res.drawable.columpios,
                                 avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.CENA_EN_COLUMPIOS
+                                catalog = Catalogs.CENA_EN_COLUMPIOS,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
                             )
                         }
-                        item {
+                        item{
                             ChatWithAvatar(
                                 clickableImg = Res.drawable.luces_y_decoracion,
                                 avatarImg = Res.drawable.luces,
                                 avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.LUCES_Y_DECORACION
+                                catalog = Catalogs.LUCES_Y_DECORACION,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
                             )
                         }
                         item{
@@ -103,12 +135,13 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.eventos_especiales,
                                 avatarImg = Res.drawable.especiales,
                                 avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.EVENTOS_ESPECIALES
+                                catalog = Catalogs.EVENTOS_ESPECIALES,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
                             )
                         }
                     }
                 }
-
             }
         }
     }

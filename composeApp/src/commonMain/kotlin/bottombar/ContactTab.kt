@@ -1,19 +1,45 @@
 package bottombar
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import bottombar.reusable_composable.AvatarPosition
+import bottombar.reusable_composable.Catalogs
+import bottombar.reusable_composable.ChatWithAvatar
+import bottombar.reusable_composable.Screens_Topbar
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import coolmorning.composeapp.generated.resources.Res
+import coolmorning.composeapp.generated.resources.box_y_globos
+import coolmorning.composeapp.generated.resources.cena_en_columpios
+import coolmorning.composeapp.generated.resources.columpios
+import coolmorning.composeapp.generated.resources.desayunos_y_globos
+import coolmorning.composeapp.generated.resources.especiales
+import coolmorning.composeapp.generated.resources.eventos_especiales
+import coolmorning.composeapp.generated.resources.logo1
+import coolmorning.composeapp.generated.resources.luces
+import coolmorning.composeapp.generated.resources.luces_y_decoracion
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
 object ContactTab : Tab {
 
@@ -30,10 +56,94 @@ object ContactTab : Tab {
             }
         }
 
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
-        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Pantalla de contacto", fontSize = 22.sp, color = Color.Black)
+        val windowSizeClass = calculateWindowSizeClass()
+
+        val imgWidth = when (windowSizeClass.widthSizeClass) {
+            WindowWidthSizeClass.Compact -> 280.dp
+            else -> 450.dp
+        }
+
+        val imgHeight = when (windowSizeClass.heightSizeClass) {
+            WindowHeightSizeClass.Compact -> 140.dp
+            WindowHeightSizeClass.Medium -> 140.dp
+            else -> 210.dp
+        }
+
+        val fontSize = when (windowSizeClass.widthSizeClass) {
+            WindowWidthSizeClass.Compact -> 15.sp
+            else -> 20.sp
+        }
+
+        Column(modifier = Modifier.fillMaxSize().fillMaxHeight()) {
+            Box(
+                modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
+                contentAlignment = Alignment.TopCenter,
+            ) {
+                // Logo Background Image with Opacity
+                Image(
+                    //TODO: cambiar fondo en esta pantalla
+                    painter = painterResource(Res.drawable.logo1),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop,
+                    alpha = 0.2f
+                )
+                Column {
+                    Screens_Topbar(
+                        text = "Estamos a tus ordenes!",
+                        fontSize = fontSize
+                    )
+                    LazyColumn (
+                        modifier = Modifier.fillMaxHeight().fillMaxSize(),
+                        verticalArrangement = Arrangement.SpaceAround,
+                    ){
+                        item{
+                            //TODO: cambiar ChatWithAvatar por imagenes clickables para los intents de whatsapp, facebook, instagram y correo
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.desayunos_y_globos,
+                                avatarImg = Res.drawable.box_y_globos,
+                                avatarPosition = AvatarPosition.RIGHT,
+                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
+                            )
+                        }
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.cena_en_columpios,
+                                avatarImg = Res.drawable.columpios,
+                                avatarPosition = AvatarPosition.LEFT,
+                                catalog = Catalogs.CENA_EN_COLUMPIOS,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
+                            )
+                        }
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.luces_y_decoracion,
+                                avatarImg = Res.drawable.luces,
+                                avatarPosition = AvatarPosition.RIGHT,
+                                catalog = Catalogs.LUCES_Y_DECORACION,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
+                            )
+                        }
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.eventos_especiales,
+                                avatarImg = Res.drawable.especiales,
+                                avatarPosition = AvatarPosition.LEFT,
+                                catalog = Catalogs.EVENTOS_ESPECIALES,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
