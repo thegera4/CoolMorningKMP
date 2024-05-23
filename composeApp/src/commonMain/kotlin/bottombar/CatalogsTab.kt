@@ -67,46 +67,48 @@ object CatalogsTab  : Tab {
                     contentScale = ContentScale.Crop,
                     alpha = 0.2f
                 )
-                // Topbar Composable: Small logo and text above the catalogs
-                Topbar_Catalogs()
-                // Scrollable Column container for the catalog options
-                LazyColumn (
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier.padding(top = 108.dp)
-                ){
-                    item{
-                        ChatWithAvatar(
-                            clickableImg = Res.drawable.desayunos_y_globos,
-                            avatarImg = Res.drawable.box_y_globos,
-                            avatarPosition = AvatarPosition.RIGHT,
-                            catalog = Catalogs.DESAYUNOS_Y_GLOBOS
-                        )
-                    }
-                    item{
-                        ChatWithAvatar(
-                            clickableImg = Res.drawable.cena_en_columpios,
-                            avatarImg = Res.drawable.columpios,
-                            avatarPosition = AvatarPosition.LEFT,
-                            catalog = Catalogs.CENA_EN_COLUMPIOS
-                        )
-                    }
-                    item {
-                        ChatWithAvatar(
-                            clickableImg = Res.drawable.luces_y_decoracion,
-                            avatarImg = Res.drawable.luces,
-                            avatarPosition = AvatarPosition.RIGHT,
-                            catalog = Catalogs.LUCES_Y_DECORACION
-                        )
-                    }
-                    item{
-                        ChatWithAvatar(
-                            clickableImg = Res.drawable.eventos_especiales,
-                            avatarImg = Res.drawable.especiales,
-                            avatarPosition = AvatarPosition.LEFT,
-                            catalog = Catalogs.EVENTOS_ESPECIALES
-                        )
+                Column {
+                    // Topbar Composable: Small logo and text above the catalogs
+                    Topbar_Catalogs()
+                    // Scrollable Column container for the catalog options
+                    LazyColumn (
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                    ){
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.desayunos_y_globos,
+                                avatarImg = Res.drawable.box_y_globos,
+                                avatarPosition = AvatarPosition.RIGHT,
+                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS
+                            )
+                        }
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.cena_en_columpios,
+                                avatarImg = Res.drawable.columpios,
+                                avatarPosition = AvatarPosition.LEFT,
+                                catalog = Catalogs.CENA_EN_COLUMPIOS
+                            )
+                        }
+                        item {
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.luces_y_decoracion,
+                                avatarImg = Res.drawable.luces,
+                                avatarPosition = AvatarPosition.RIGHT,
+                                catalog = Catalogs.LUCES_Y_DECORACION
+                            )
+                        }
+                        item{
+                            ChatWithAvatar(
+                                clickableImg = Res.drawable.eventos_especiales,
+                                avatarImg = Res.drawable.especiales,
+                                avatarPosition = AvatarPosition.LEFT,
+                                catalog = Catalogs.EVENTOS_ESPECIALES
+                            )
+                        }
                     }
                 }
+
             }
         }
     }
