@@ -22,22 +22,17 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bottombar.reusable_composable.AvatarPosition
-import bottombar.reusable_composable.Catalogs
-import bottombar.reusable_composable.ChatWithAvatar
 import bottombar.reusable_composable.Screens_Topbar
+import bottombar.reusable_composable.Social_Clickable
+import bottombar.reusable_composable.Socials
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import coolmorning.composeapp.generated.resources.Res
-import coolmorning.composeapp.generated.resources.box_y_globos
-import coolmorning.composeapp.generated.resources.cena_en_columpios
-import coolmorning.composeapp.generated.resources.columpios
-import coolmorning.composeapp.generated.resources.desayunos_y_globos
-import coolmorning.composeapp.generated.resources.especiales
-import coolmorning.composeapp.generated.resources.eventos_especiales
-import coolmorning.composeapp.generated.resources.logo1
-import coolmorning.composeapp.generated.resources.luces
-import coolmorning.composeapp.generated.resources.luces_y_decoracion
+import coolmorning.composeapp.generated.resources.contact_background
+import coolmorning.composeapp.generated.resources.facebook
+import coolmorning.composeapp.generated.resources.gmail
+import coolmorning.composeapp.generated.resources.instagram
+import coolmorning.composeapp.generated.resources.whatsapp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -84,12 +79,10 @@ object ContactTab : Tab {
             ) {
                 // Logo Background Image with Opacity
                 Image(
-                    //TODO: cambiar fondo en esta pantalla
-                    painter = painterResource(Res.drawable.logo1),
+                    painter = painterResource(Res.drawable.contact_background),
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop,
-                    alpha = 0.2f
                 )
                 Column {
                     Screens_Topbar(
@@ -101,42 +94,33 @@ object ContactTab : Tab {
                         verticalArrangement = Arrangement.SpaceAround,
                     ){
                         item{
-                            //TODO: cambiar ChatWithAvatar por imagenes clickables para los intents de whatsapp, facebook, instagram y correo
-                            ChatWithAvatar(
-                                clickableImg = Res.drawable.desayunos_y_globos,
-                                avatarImg = Res.drawable.box_y_globos,
-                                avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS,
+                            Social_Clickable(
+                                clickableImg = Res.drawable.whatsapp,
+                                social = Socials.WHATSAPP,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
                         }
                         item{
-                            ChatWithAvatar(
-                                clickableImg = Res.drawable.cena_en_columpios,
-                                avatarImg = Res.drawable.columpios,
-                                avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.CENA_EN_COLUMPIOS,
+                            Social_Clickable(
+                                clickableImg = Res.drawable.instagram,
+                                social = Socials.INSTAGRAM,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
                         }
                         item{
-                            ChatWithAvatar(
-                                clickableImg = Res.drawable.luces_y_decoracion,
-                                avatarImg = Res.drawable.luces,
-                                avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.LUCES_Y_DECORACION,
+                            Social_Clickable(
+                                clickableImg = Res.drawable.facebook,
+                                social = Socials.FACEBOOK,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
                         }
                         item{
-                            ChatWithAvatar(
-                                clickableImg = Res.drawable.eventos_especiales,
-                                avatarImg = Res.drawable.especiales,
-                                avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.EVENTOS_ESPECIALES,
+                            Social_Clickable(
+                                clickableImg = Res.drawable.gmail,
+                                social = Socials.EMAIL,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
