@@ -23,7 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bottombar.reusable_composable.AvatarPosition
-import bottombar.reusable_composable.Catalogs
 import bottombar.reusable_composable.ChatWithAvatar
 import bottombar.reusable_composable.Screens_Topbar
 import cafe.adriel.voyager.navigator.tab.Tab
@@ -105,7 +104,6 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.desayunos_y_globos,
                                 avatarImg = Res.drawable.box_y_globos,
                                 avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
@@ -115,7 +113,6 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.cena_en_columpios,
                                 avatarImg = Res.drawable.columpios,
                                 avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.CENA_EN_COLUMPIOS,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
@@ -125,7 +122,6 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.luces_y_decoracion,
                                 avatarImg = Res.drawable.luces,
                                 avatarPosition = AvatarPosition.RIGHT,
-                                catalog = Catalogs.LUCES_Y_DECORACION,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )
@@ -135,7 +131,6 @@ object CatalogsTab  : Tab {
                                 clickableImg = Res.drawable.eventos_especiales,
                                 avatarImg = Res.drawable.especiales,
                                 avatarPosition = AvatarPosition.LEFT,
-                                catalog = Catalogs.EVENTOS_ESPECIALES,
                                 imgWidth = imgWidth,
                                 imgHeight = imgHeight
                             )

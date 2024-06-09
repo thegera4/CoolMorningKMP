@@ -17,7 +17,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.TabDisposable
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 
-class BottomBarScreen : Screen {
+class BottomBarScreen() : Screen {
     @Composable
     override fun Content() {
         TabNavigator(

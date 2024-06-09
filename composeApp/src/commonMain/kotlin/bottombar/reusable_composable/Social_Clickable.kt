@@ -1,5 +1,7 @@
 package bottombar.reusable_composable
 
+import Intents
+import PlatformContext
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,7 +23,15 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun Social_Clickable(clickableImg: DrawableResource, social: Socials, imgWidth: Dp, imgHeight: Dp ){
+fun Social_Clickable(
+    clickableImg: DrawableResource,
+    social: Socials,
+    imgWidth: Dp,
+    imgHeight: Dp,
+    context: PlatformContext
+){
+    val intents = Intents(context)
+
     Row (
         modifier = Modifier.fillMaxHeight().fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
@@ -29,15 +39,26 @@ fun Social_Clickable(clickableImg: DrawableResource, social: Socials, imgWidth: 
         Image(
             painter = painterResource(clickableImg),
             contentDescription = null,
-            modifier = Modifier.width(imgWidth).height(imgHeight).clickable(
-                indication = null,
-                interactionSource = remember { MutableInteractionSource() }
-            )  {
-                println(social)
-                // TODO: Intent to open the social media app (Facebook, Instagram, WhatsApp, Email)
-            },
+            modifier = Modifier
+                .width(imgWidth)
+                .height(imgHeight)
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }
+                )  {
+                    openSocial(social, intents)
+                },
             alignment = Alignment.Center,
         )
+    }
+}
+
+fun openSocial(social: Socials, intents: Intents) {
+    when (social) {
+        Socials.FACEBOOK -> { intents.openFacebookIntent() }
+        Socials.INSTAGRAM -> { intents.openInstagramIntent() }
+        Socials.WHATSAPP -> { intents.openWhatsAppIntent() }
+        Socials.EMAIL -> { intents.openEmailIntent() }
     }
 }
 

@@ -23,9 +23,12 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource,
-                   avatarPosition: AvatarPosition, catalog: Catalogs,
-                   imgWidth: Dp, imgHeight: Dp ) {
+fun ChatWithAvatar(
+    clickableImg: DrawableResource, avatarImg: DrawableResource,
+    avatarPosition: AvatarPosition, imgWidth: Dp,
+    imgHeight: Dp
+) {
+
 
     Row (
         modifier = Modifier.fillMaxHeight().fillMaxWidth(),
@@ -41,8 +44,7 @@ fun ChatWithAvatar(clickableImg: DrawableResource, avatarImg: DrawableResource,
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() }
             )  {
-                println(catalog)
-                // TODO: When clicked, it will open a pdf viewer with the catalog (pdf file)
+                //open pdf
             },
             alignment = Alignment.Center,
         )
@@ -57,6 +59,6 @@ enum class AvatarPosition {
     LEFT, RIGHT
 }
 
-enum class Catalogs {
+/*enum class Catalogs {
     DESAYUNOS_Y_GLOBOS, CENA_EN_COLUMPIOS, LUCES_Y_DECORACION, EVENTOS_ESPECIALES
-}
+}*/

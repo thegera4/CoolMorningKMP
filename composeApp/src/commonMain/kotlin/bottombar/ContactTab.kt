@@ -1,5 +1,6 @@
 package bottombar
 
+import LocalPlatform
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -54,6 +55,8 @@ object ContactTab : Tab {
     @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalResourceApi::class)
     @Composable
     override fun Content() {
+        val platformContext = LocalPlatform.current
+
         val windowSizeClass = calculateWindowSizeClass()
 
         val imgWidth = when (windowSizeClass.widthSizeClass) {
@@ -98,7 +101,8 @@ object ContactTab : Tab {
                                 clickableImg = Res.drawable.whatsapp,
                                 social = Socials.WHATSAPP,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext
                             )
                         }
                         item{
@@ -106,7 +110,8 @@ object ContactTab : Tab {
                                 clickableImg = Res.drawable.instagram,
                                 social = Socials.INSTAGRAM,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext
                             )
                         }
                         item{
@@ -114,7 +119,8 @@ object ContactTab : Tab {
                                 clickableImg = Res.drawable.facebook,
                                 social = Socials.FACEBOOK,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext
                             )
                         }
                         item{
@@ -122,7 +128,8 @@ object ContactTab : Tab {
                                 clickableImg = Res.drawable.gmail,
                                 social = Socials.EMAIL,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext
                             )
                         }
                     }
