@@ -1,3 +1,5 @@
+import bottombar.reusable_composable.Catalogs
+
 actual class PlatformContext
 
 actual class Intents actual constructor(context: PlatformContext){
@@ -15,5 +17,9 @@ actual class Intents actual constructor(context: PlatformContext){
 
     actual fun openWhatsAppIntent() {
         println("WhatsApp intent for desktop...not gonna happen...")
+    }
+
+    actual fun openPdfIntent(uri: String) {
+        println("Pdf intent for desktop...not gonna happen...")
     }
 }

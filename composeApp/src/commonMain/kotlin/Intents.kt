@@ -1,4 +1,5 @@
 import androidx.compose.runtime.staticCompositionLocalOf
+import bottombar.reusable_composable.Catalogs
 
 expect class PlatformContext
 
@@ -7,6 +8,7 @@ expect class Intents(context: PlatformContext) {
     fun openInstagramIntent()
     fun openWhatsAppIntent()
     fun openEmailIntent()
+    fun openPdfIntent(uri: String)
 
 }
 

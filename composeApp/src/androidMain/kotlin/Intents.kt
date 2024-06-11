@@ -1,5 +1,12 @@
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import androidx.core.content.FileProvider
+import bottombar.reusable_composable.Catalogs
+import com.coolmorning.kmp.R
+import coolmorning.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import java.io.File
 import android.content.Context as AndroidContext
 
 actual class PlatformContext(val androidContext: AndroidContext)
@@ -49,6 +56,17 @@ actual class Intents actual constructor(private val context: PlatformContext) {
             context.androidContext.startActivity(Intent.createChooser(emailIntent, "Enviar Email"))
         } catch (e: Exception) {
             Log.e("Intents", "Error al abrir el intent de email", e)
+        }
+    }
+
+    actual fun openPdfIntent(uri: String) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(uri)
+        }
+        try {
+            context.androidContext.startActivity(intent)
+        } catch (e: Exception) {
+            Log.e("Intents", "Error al realizar el intent", e)
         }
     }
 

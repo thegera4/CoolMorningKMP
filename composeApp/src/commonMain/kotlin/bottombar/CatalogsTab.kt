@@ -1,5 +1,6 @@
 package bottombar
 
+import LocalPlatform
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bottombar.reusable_composable.AvatarPosition
+import bottombar.reusable_composable.Catalogs
 import bottombar.reusable_composable.ChatWithAvatar
 import bottombar.reusable_composable.Screens_Topbar
 import cafe.adriel.voyager.navigator.tab.Tab
@@ -58,6 +60,8 @@ object CatalogsTab  : Tab {
     @OptIn(ExperimentalResourceApi::class, ExperimentalMaterial3WindowSizeClassApi::class)
     @Composable
     override fun Content() {
+
+        val platformContext = LocalPlatform.current
 
         val windowSizeClass = calculateWindowSizeClass()
 
@@ -105,7 +109,9 @@ object CatalogsTab  : Tab {
                                 avatarImg = Res.drawable.box_y_globos,
                                 avatarPosition = AvatarPosition.RIGHT,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext,
+                                catalog = Catalogs.DESAYUNOS_Y_GLOBOS
                             )
                         }
                         item{
@@ -114,7 +120,9 @@ object CatalogsTab  : Tab {
                                 avatarImg = Res.drawable.columpios,
                                 avatarPosition = AvatarPosition.LEFT,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext,
+                                catalog = Catalogs.CENA_EN_COLUMPIOS
                             )
                         }
                         item{
@@ -123,7 +131,9 @@ object CatalogsTab  : Tab {
                                 avatarImg = Res.drawable.luces,
                                 avatarPosition = AvatarPosition.RIGHT,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext,
+                                catalog = Catalogs.LUCES_Y_DECORACION
                             )
                         }
                         item{
@@ -132,7 +142,9 @@ object CatalogsTab  : Tab {
                                 avatarImg = Res.drawable.especiales,
                                 avatarPosition = AvatarPosition.LEFT,
                                 imgWidth = imgWidth,
-                                imgHeight = imgHeight
+                                imgHeight = imgHeight,
+                                context = platformContext,
+                                catalog = Catalogs.EVENTOS_ESPECIALES
                             )
                         }
                     }
