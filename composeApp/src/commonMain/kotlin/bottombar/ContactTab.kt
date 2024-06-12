@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
@@ -33,6 +33,7 @@ import coolmorning.composeapp.generated.resources.contact_background
 import coolmorning.composeapp.generated.resources.facebook
 import coolmorning.composeapp.generated.resources.gmail
 import coolmorning.composeapp.generated.resources.instagram
+import coolmorning.composeapp.generated.resources.website
 import coolmorning.composeapp.generated.resources.whatsapp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
@@ -42,7 +43,7 @@ object ContactTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val icon = rememberVectorPainter(Icons.Default.Call)
+            val icon = rememberVectorPainter(Icons.Default.Email)
             return remember {
                 TabOptions(
                     index = 2u,
@@ -96,6 +97,15 @@ object ContactTab : Tab {
                         modifier = Modifier.fillMaxHeight().fillMaxSize(),
                         verticalArrangement = Arrangement.SpaceAround,
                     ){
+                        item{
+                            Social_Clickable(
+                                clickableImg = Res.drawable.website,
+                                social = Socials.WEB,
+                                imgWidth = imgWidth,
+                                imgHeight = imgHeight,
+                                context = platformContext
+                            )
+                        }
                         item{
                             Social_Clickable(
                                 clickableImg = Res.drawable.whatsapp,

@@ -55,6 +55,7 @@ fun Social_Clickable(
 
 fun openSocial(social: Socials, intents: Intents) {
     when (social) {
+        Socials.WEB -> { intents.openWebsiteIntent("https://coolmorning.com.mx/") }
         Socials.FACEBOOK -> { intents.openFacebookIntent() }
         Socials.INSTAGRAM -> { intents.openInstagramIntent() }
         Socials.WHATSAPP -> { intents.openWhatsAppIntent() }
@@ -63,5 +64,5 @@ fun openSocial(social: Socials, intents: Intents) {
 }
 
 enum class Socials {
-    FACEBOOK, INSTAGRAM, WHATSAPP, EMAIL
+    WEB, FACEBOOK, INSTAGRAM, WHATSAPP, EMAIL
 }

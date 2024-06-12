@@ -3,6 +3,10 @@ import bottombar.reusable_composable.Catalogs
 actual class PlatformContext
 
 actual class Intents actual constructor(context: PlatformContext) {
+    actual fun openWebsiteIntent(uri: String) {
+        println("Website intent not implemented for iOS yet.")
+    }
+
     actual fun openEmailIntent() {
         println("Email intent not implemented for iOS yet.")
     }

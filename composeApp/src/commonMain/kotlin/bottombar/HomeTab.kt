@@ -54,36 +54,33 @@ object HomeTab : Tab {
     override fun Content() {
 
         val windowSizeClass = calculateWindowSizeClass()
-
-        // Example of how to change the font size based on the screen width
         val fontSize = when (windowSizeClass.widthSizeClass) {
             WindowWidthSizeClass.Compact -> 16.sp
             WindowWidthSizeClass.Medium -> 24.sp
             else -> 30.sp
         }
-
+        
         Column(modifier = Modifier.fillMaxWidth().fillMaxHeight()) {
-                Box (
+            Box (
                     modifier = Modifier.fillMaxSize().padding(bottom = 56.dp),
                     contentAlignment = Alignment.BottomCenter,
                 ){
-                    Image(
-                        painter = painterResource(Res.drawable.home_screen_img),
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                        alignment = Alignment.TopCenter,
-                        contentScale = ContentScale.Crop
-                    )
-                    Text(
-                        text = "El detalle perfecto para cada ocasión!",
-                        fontSize = fontSize,
-                        fontWeight = FontWeight.Bold,
-                        fontFamily = FontFamily(Font(Res.font.GOTHICB)),
-                        color = Color(0xFF8D6236),
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
-                    )
-
+                Image(
+                    painter = painterResource(Res.drawable.home_screen_img),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                    alignment = Alignment.TopCenter,
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = "El detalle perfecto para cada ocasión!",
+                    fontSize = fontSize,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily(Font(Res.font.GOTHICB)),
+                    color = Color(0xFF8D6236),
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                )
                 }
         }
     }

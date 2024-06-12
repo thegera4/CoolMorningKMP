@@ -3,6 +3,10 @@ import bottombar.reusable_composable.Catalogs
 actual class PlatformContext
 
 actual class Intents actual constructor(context: PlatformContext){
+    actual fun openWebsiteIntent(uri: String) {
+        println("Website intent for desktop...not gonna happen...")
+    }
+
     actual fun openEmailIntent() {
         println("Email intent for desktop...not gonna happen...")
     }

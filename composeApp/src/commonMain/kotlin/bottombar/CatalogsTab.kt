@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowHeightSizeClass
@@ -47,7 +48,7 @@ object CatalogsTab  : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val icon = rememberVectorPainter(Icons.Default.Menu)
+            val icon = rememberVectorPainter(Icons.Default.Info)
             return remember {
                 TabOptions(
                     index = 1u,

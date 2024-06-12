@@ -12,6 +12,18 @@ import android.content.Context as AndroidContext
 actual class PlatformContext(val androidContext: AndroidContext)
 
 actual class Intents actual constructor(private val context: PlatformContext) {
+
+    actual fun openWebsiteIntent(uri: String) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(uri)
+        }
+        try {
+            context.androidContext.startActivity(intent)
+        } catch (e: Exception) {
+            Log.e("Intents", "Error al realizar el intent del navegador", e)
+        }
+    }
+
     actual fun openFacebookIntent() {
         val facebookIntent = Intent(Intent.ACTION_VIEW).apply {
             data = android.net.Uri.parse("https://www.facebook.com/CoolMorningLaguna")
